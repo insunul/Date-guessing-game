@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Place Value Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: red;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: darkred;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100px;
+            border-collapse: collapse;
+            margin: 10px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .result {
+            background-color: #008CBA;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .calculate-btn {
+            background-color: #008CBA;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .calculate-btn:hover {
+            background-color: #006f8a;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align: center;">Guess the date</h2>
+
+<div class="container">
+    <!-- Start Button -->
+    <button onclick="startSelection()">Start</button>
+</div>
+
+<!-- Modal Structure -->
+<div id="table1" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('table1')">&times;</span>
+        <h3>Are your guessed numbers in the table?</h3>
+        <table>
+            <thead>
+                <tr><th colspan="4">Table</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>3</td><td>5</td><td>7</td></tr>
+                <tr><td>9</td><td>11</td><td>13</td><td>15</td></tr>
+                <tr><td>17</td><td>19</td><td>21</td><td>23</td></tr>
+                <tr><td>25</td><td>27</td><td>29</td><td>31</td></tr>
+            </tbody>
+        </table>
+        <div class="btn-container">
+            <button onclick="selectTable('table1', 1)">Yess</button>
+            <button onclick="closeAndNext('table1')">NO</button>
+        </div>
+    </div>
+</div>
+
+<div id="table2" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('table2')">&times;</span>
+        <h3>Are your guessed numbers in the table?</h3>
+        <table>
+            <thead>
+                <tr><th colspan="4">Table</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>2</td><td>3</td><td>6</td><td>7</td></tr>
+                <tr><td>10</td><td>11</td><td>14</td><td>15</td></tr>
+                <tr><td>18</td><td>19</td><td>22</td><td>23</td></tr>
+                <tr><td>26</td><td>27</td><td>30</td><td>31</td></tr>
+            </tbody>
+        </table>
+        <div class="btn-container">
+            <button onclick="selectTable('table2', 2)">Yess</button>
+            <button onclick="closeAndNext('table2')">NO</button>
+        </div>
+    </div>
+</div>
+
+<div id="table3" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('table3')">&times;</span>
+        <h3>Are your guessed numbers in the table?</h3>
+        <table>
+            <thead>
+                <tr><th colspan="4">Table</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+                <tr><td>12</td><td>13</td><td>14</td><td>15</td></tr>
+                <tr><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+                <tr><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+            </tbody>
+        </table>
+        <div class="btn-container">
+            <button onclick="selectTable('table3', 4)">Yess</button>
+            <button onclick="closeAndNext('table3')">No</button>
+        </div>
+    </div>
+</div>
+
+<div id="table4" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('table4')">&times;</span>
+        <h3>Are your guessed numbers in the table?</h3>
+        <table>
+            <thead>
+                <tr><th colspan="4">Table</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+                <tr><td>12</td><td>13</td><td>14</td><td>15</td></tr>
+                <tr><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+                <tr><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+            </tbody>
+        </table>
+        <div class="btn-container">
+            <button onclick="selectTable('table4', 8)">Yess</button>
+            <button onclick="closeAndNext('table4')">No</button>
+        </div>
+    </div>
+</div>
+
+<div id="table5" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('table5')">&times;</span>
+        <h3>Are your guessed numbers in the table?</h3>
+        <table>
+            <thead>
+                <tr><th colspan="4">Table</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+                <tr><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+                <tr><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+                <tr><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+            </tbody>
+        </table>
+        <div class="btn-container">
+            <button onclick="selectTable('table5', 16)">Yess</button>
+            <button onclick="closeAndNext('table5')">No</button>
+        </div>
+    </div>
+</div>
+
+<!-- Calculate Button -->
+<div class="container">
+    <button class="calculate-btn" onclick="calculateSum()">Calculate</button>
+</div>
+
+<!-- Result Display -->
+<div class="result" id="resultDisplay">
+    <h3>Your guessed</h3>
+    <p id="resultText">0</p>
+</div>
+
+<script>
+    let selectedSum = 0;
+    let currentTableIndex = 1;
+    const totalTables = 5;
+
+    function openModal(tableId) {
+        document.getElementById(tableId).style.display = "block";
+    }
+
+    function closeModal(tableId) {
+        document.getElementById(tableId).style.display = "none";
+    }
+
+    function selectTable(tableId, placeValue) {
+        // Add place value to the selected sum
+        selectedSum += placeValue;
+        closeAndNext(tableId);
+    }
+
+    function closeAndNext(currentTableId) {
+        closeModal(currentTableId);
+        currentTableIndex++;
+        if (currentTableIndex <= totalTables) {
+            openModal('table' + currentTableIndex);
+        }
+    }
+
+    function startSelection() {
+        currentTableIndex = 1; // Reset the index to the first table
+        openModal('table1');
+    }
+
+    function calculateSum() {
+        // Show result section with the sum
+        document.getElementById('resultText').innerText = "date is: " + selectedSum;
+        document.getElementById('resultDisplay').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
